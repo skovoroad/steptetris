@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef WIN32
+#include <conio.h>
+#endif
+
 #include <cstdlib>
 
 class IO
@@ -16,12 +20,14 @@ public:
     }
 
     char lastInput() {
+#ifdef WIN32
+        return getch();
+#else
         return getchar();
+#endif
     }
 
     void clearOutput() const {
         system("clear");
     }
 };
-
-
